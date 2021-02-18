@@ -53,10 +53,14 @@ body {
  
       // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
       emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-      name = $( "#name" ),
-      email = $( "#email" ),
-      password = $( "#password" ),
-      allFields = $( [] ).add( name ).add( email ).add( password ),
+	  id = $( "#id" ),
+      tipas = $( "#tipas" ),
+      pav = $( "#pav" ),
+      kvadratūrą_kv_m = $( "#kvadratūrą_kv_m" ),
+	  numatomi_darbai = $( "#numatomi_darbai" ),
+	  pradžia = $( "#pradžia" ),
+	  numatoma_pabaiga = $( "#numatoma_pabaiga" ),
+      allFields = $( [] ).add( id ).add( tipas ).add( pav ).add( kvadratūrą_kv_m ).add( numatomi_darbai ).add( pradžia ).add( numatoma_pabaiga ),
       tips = $( ".validateTips" );
  
     function updateTips( t ) {
@@ -92,23 +96,36 @@ body {
     function addUser() {
       var valid = true;
       allFields.removeClass( "ui-state-error" );
- 
-      valid = valid && checkLength( name, "username", 3, 16 );
-      valid = valid && checkLength( email, "email", 6, 80 );
-      valid = valid && checkLength( password, "password", 5, 16 );
- 
-      valid = valid && checkRegexp( name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
-      valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-      valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+	  
+	  valid = valid && checkLength( id, "id", 3, 16 );
+      valid = valid && checkLength( tipas, "tipas", 3, 16 );
+      valid = valid && checkLength( pav, "pav", 6, 80 );
+      valid = valid && checkLength( kvadratūrą_kv_m, "kvadratūrą_kv_m", 5, 16 );
+	  valid = valid && checkLength( numatomi_darbai, "numatomi_darbai", 5, 16 );
+	  valid = valid && checkLength( pradžia, "pradžia", 5, 16 );
+	  valid = valid && checkLength( numatoma_pabaiga, "numatoma_pabaiga", 5, 16 );
+	  
+	  valid = valid && checkRegexp( id, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+      valid = valid && checkRegexp( tipas, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter." );
+      valid = valid && checkRegexp( pav, /^[a-z]([0-9a-z_\s])+$/i, "eg. ui@jquery.com" );
+      valid = valid && checkRegexp( kvadratūrą_kv_m, /^[a-z]([0-9a-z_\s])+$/i, "Password field only allow : a-z 0-9" );
+	  valid = valid && checkRegexp( numatomi_darbai, /^[a-z]([0-9a-z_\s])+$/i, "Password field only allow : a-z 0-9" );
+	  valid = valid && checkRegexp( pradžia, /^[a-z]([0-9a-z_\s])+$/i, "Password field only allow : a-z 0-9" );
+	  valid = valid && checkRegexp( numatoma_pabaiga, /^[a-z]([0-9a-z_\s])+$/i, "Password field only allow : a-z 0-9" );
  
       if ( valid ) {
-        $( "#users tbody" ).append( "<tr>" +
-          "<td>" + name.val() + "</td>" +
-          "<td>" + email.val() + "</td>" +
-          "<td>" + password.val() + "</td>" +
+        $( "#customers" ).append( "<tr>" +
+		
+		  "<td>" + id.val() + "</td>" +
+		  "<td>" + tipas.val() + "</td>" +
+          "<td>" + pav.val() + "</td>" +
+          "<td>" + kvadratūrą_kv_m.val() + "</td>" +
+		  "<td>" + numatomi_darbai.val() + "</td>" +
+		  "<td>" + pradžia.val() + "</td>" +
+		  "<td>" + numatoma_pabaiga.val() + "</td>" +
         "</tr>" );
         dialog.dialog( "close" );
-      }
+     }
       return valid;
     }
  
@@ -136,6 +153,7 @@ body {
  
     $( "#create-user" ).button().on( "click", function() {
       dialog.dialog( "open" );
+	  //++ i redagavima
     });
   } );
   </script>
@@ -217,18 +235,20 @@ e.printStackTrace();
  
   <form>
     <fieldset>
-      <label for="name">Tipas</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
-	  <label for="name">Pavadinimas</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+	  <label for="id">Id</label>
+      <input type="text" name="id" id="id" value="" class="text ui-widget-content ui-corner-all">
+      <label for="tipas">Tipas</label>
+      <input type="text" name="tipas" id="tipas" value="" class="text ui-widget-content ui-corner-all">
+	  <label for="pav">Pavadinimas</label>
+      <input type="text" name="pav" id="pav" value="" class="text ui-widget-content ui-corner-all">
 	  <label for="name">Kvadratūrą_kv_m</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="kvadratūrą_kv_m" id="kvadratūrą_kv_m" value="" class="text ui-widget-content ui-corner-all">
 	  <label for="name">Numatomi_darbai</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="numatomi_darbai" id="numatomi_darbai" value="" class="text ui-widget-content ui-corner-all">
 	  <label for="name">Pradžia</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="pradžia" id="pradžia" value="" class="text ui-widget-content ui-corner-all">
 	  <label for="name">Numatoma_pabaiga</label>
-      <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+      <input type="text" name="numatoma_pabaiga" id="numatoma_pabaiga" value="" class="text ui-widget-content ui-corner-all">
 	  
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
